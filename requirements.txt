@@ -1,0 +1,6 @@
+gradio>=5.29.0
+gradio-client>=1.10.0
+numpy<2
+opencv-python-headless>=4.10.0
+torch>=2.2.0
+ultralytics>=8.3.0
