@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import os
+import json
 from dataclasses import dataclass
 from functools import lru_cache
-import os
 from pathlib import Path
 from uuid import uuid4
 
@@ -11,8 +12,39 @@ import numpy as np
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 YOLO_CONFIG_DIR = ROOT_DIR / ".ultralytics"
-YOLO_CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+ULTRALYTICS_SETTINGS_DIR = YOLO_CONFIG_DIR / "Ultralytics"
+ULTRALYTICS_SETTINGS_FILE = ULTRALYTICS_SETTINGS_DIR / "settings.json"
+ULTRALYTICS_SETTINGS_DIR.mkdir(parents=True, exist_ok=True)
 os.environ.setdefault("YOLO_CONFIG_DIR", str(YOLO_CONFIG_DIR))
+
+if not ULTRALYTICS_SETTINGS_FILE.exists():
+    ULTRALYTICS_SETTINGS_FILE.write_text(
+        json.dumps(
+            {
+                "settings_version": "0.0.6",
+                "datasets_dir": str(ROOT_DIR / "datasets"),
+                "weights_dir": "weights",
+                "runs_dir": "runs",
+                "uuid": "abs6187-triple-helmet-detection",
+                "sync": False,
+                "api_key": "",
+                "openai_api_key": "",
+                "clearml": False,
+                "comet": False,
+                "dvc": False,
+                "hub": False,
+                "mlflow": False,
+                "neptune": False,
+                "raytune": False,
+                "tensorboard": False,
+                "wandb": False,
+                "vscode_msg": False,
+                "openvino_msg": False,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
 from ultralytics import YOLO
 

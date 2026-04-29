@@ -33,15 +33,15 @@ Triple Helmet Detection is a Gradio app for checking motorcycle safety in street
 
 ### Example 1
 
-![Example 1](assets/examples/example_0.jpg)
+![Example 1](assets/examples/sample_01.jpg)
 
 ### Example 2
 
-![Example 2](assets/examples/example_1.jpg)
+![Example 2](assets/examples/sample_02.jpg)
 
 ### Example 3
 
-![Example 3](assets/examples/example_2.jpg)
+![Example 3](assets/examples/sample_03.jpg)
 
 ## Included in this Space
 

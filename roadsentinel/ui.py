@@ -107,13 +107,6 @@ def build_demo() -> gr.Blocks:
                 outputs=[video_output, video_summary],
             )
 
-        gr.Markdown(
-            """
-            **Dataset note:** the detector was trained from the public Roboflow project shared by the user.
-            This Space packages only the inference app and a few local example frames derived from the source demo.
-            """
-        )
-
     return demo
 
 
