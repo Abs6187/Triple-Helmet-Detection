@@ -28,16 +28,22 @@ def _load_image(path: str) -> np.ndarray:
 
 def run_image_demo(image: np.ndarray, conf_threshold: float) -> tuple[np.ndarray, str]:
     if image is None:
-        raise gr.Error("Upload an image or pick one of the examples.")
-    annotated_bgr, summary = process_image(image[:, :, ::-1], str(WEIGHTS_PATH), conf_threshold)
-    return annotated_bgr[:, :, ::-1], summary
+        return None, "Upload an image or pick one of the examples."
+    try:
+        annotated_bgr, summary = process_image(image[:, :, ::-1], str(WEIGHTS_PATH), conf_threshold)
+        return annotated_bgr[:, :, ::-1], summary
+    except Exception as exc:
+        return None, f"Image analysis failed: {exc}"
 
 
 def run_video_demo(video_path: str, conf_threshold: float) -> tuple[str, str]:
     if not video_path:
-        raise gr.Error("Upload a video clip to run roadway analysis.")
-    output_path, summary = process_video(video_path, str(WEIGHTS_PATH), conf_threshold)
-    return str(output_path), summary
+        return None, "Upload a video clip to run roadway analysis."
+    try:
+        output_path, summary = process_video(video_path, str(WEIGHTS_PATH), conf_threshold)
+        return str(output_path), summary
+    except Exception as exc:
+        return None, f"Video analysis failed: {exc}"
 
 
 def build_demo() -> gr.Blocks:
