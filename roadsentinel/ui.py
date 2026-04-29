@@ -114,4 +114,6 @@ def get_launch_kwargs() -> dict:
     return {
         "theme": APP_THEME,
         "ssr_mode": False,
+        "quiet": True,
+        "footer_links": [],
     }
